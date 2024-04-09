@@ -1,0 +1,29 @@
+<html lang="en">
+　<head><title>Go</title></head>
+　<body>
+    <!--输出处理函数传递的变量-->
+    <h1>{{ . }}</h1>
+    <hr/>
+
+    <!--包含动作，嵌套t2.html定义的red-->
+    {{ template "red" . }}
+    <hr/>
+
+    <!--包含动作，嵌套没有定义的yellow，程序报错-->
+    {{/*{{ template "yellow" . }}*/}}
+    {{/*<hr/>*/}}
+
+    <!--块动作，组合greed模版-->
+    {{ block "green" . }}
+        <h1 style="color: green;">Hello t1-{{.}}</h1>
+    {{ end }}
+    <hr/>
+
+    <!--块动作，组合blue模版-->
+    <!--blue模版在t2.html也被定义，优先使用t2.html的blue模版-->
+    {{ block "blue" . }}
+        <h1 style="color: green;">Hello t1-{{.}}</h1>
+    {{ end }}
+    <hr/>
+　</body>
+</html>
